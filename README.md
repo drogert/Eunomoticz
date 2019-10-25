@@ -1,5 +1,5 @@
 # Eunomoticz
-Python Plugin for EunO QT wallet
+Python Plugin for Euno QT wallet
 -
 Please note that this is an very very very early alpha and still being worked on:
 -
