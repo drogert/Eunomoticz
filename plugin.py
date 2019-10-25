@@ -162,7 +162,7 @@ def GetMasternodeCount():
         response = requests.post(url, headers=headers, json={"method": "masternode", "params": ["count"]})
         data = json.loads(response.text)
         if data["result"] == None:
-            Domoticz.Error("Cannot start masternodes. Reason: {}, code: {}".format(data["error"]["message"],
+            Domoticz.Error("Cannot get masternode count. Reason: {}, code: {}".format(data["error"]["message"],
                                                                                    data["error"]["code"]))
             return
     except:
@@ -181,7 +181,7 @@ def GetInfo():
         response = requests.post(url, headers=headers, json={"method": "getinfo", "params": []})
         data = json.loads(response.text)
         if data["result"] == None:
-            Domoticz.Error("Cannot start masternodes. Reason: {}, code: {}".format(data["error"]["message"],
+            Domoticz.Error("Cannot call wallet. Reason: {}, code: {}".format(data["error"]["message"],
                                                                                    data["error"]["code"]))
             return
     except:
@@ -204,7 +204,7 @@ def StopMasternode():
                                  json={"method": "masternode", "params": ["stop-many", Parameters["Mode1"]]})
         data = json.loads(response.text)
         if data["result"] == None:
-            Domoticz.Error("Cannot start masternodes. Reason: {}, code: {}".format(data["error"]["message"],
+            Domoticz.Error("Cannot stop masternodes. Reason: {}, code: {}".format(data["error"]["message"],
                                                                                    data["error"]["code"]))
             return
     except:
