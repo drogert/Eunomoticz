@@ -17,7 +17,5 @@ rpcpassword=
 Follow this guide for adding paramaters into the euno.conf
 https://medium.com/@bankymoon/euno-coin-masternode-tutorial-e8326695a471
 
-
-Add the files to the domoticz python plugin folder
-fill in your credentials while adding hardware.
+Add the files to the domoticz python plugin folder and fill in your credentials while adding hardware.
 
