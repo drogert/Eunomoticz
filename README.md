@@ -9,10 +9,14 @@ current wallet balance, current block height, current masternode count
 The Masternode button will stop and start all your masternodes that are configured inside the wallet.
 It will not work if you do not fill in your wallet password inside your credentials.
 
-Add this to your euno.conf and fill in accordingly to make a connection with the wallet.:
+Add this to your euno.conf and fill in accordingly to make a connection with the wallet:
 rpcallowip=
 rpcusername=
 rpcpassword=
+
+Follow this guide for adding paramaters into the euno.conf
+https://medium.com/@bankymoon/euno-coin-masternode-tutorial-e8326695a471
+
 
 Add the files to the domoticz python plugin folder
 fill in your credentials while adding hardware.
