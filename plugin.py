@@ -227,12 +227,12 @@ def StartMasternode():
             Domoticz.Error("Cannot start masternodes. Reason: {}, code: {}".format(data["error"]["message"],
                                                                                    data["error"]["code"]))
             return
-    except:
-        Domoticz.Error("Failed to update parameters")
-        return
-    start = str(data["result"]["overall"])
-    Domoticz.Log(start)
-    return
+     except:
+         Domoticz.Error("Failed to update parameters")
+         return
+     start = str(data["result"]["overall"])
+     Domoticz.Log(start)
+     return
 
 
 def check_ping():
