@@ -188,7 +188,6 @@ def GetInfo():
         if str(response.status_code) == "401":
             Domoticz.Error("Unauthorized! Check RPC username and/or password entry")
             return
-        Domoticz.Error(str(response.status_code))
         data = json.loads(response.text)
         if data["result"] == None:
             Domoticz.Error("Cannot call wallet. Reason: {}, code: {}".format(data["error"]["message"],
