@@ -99,7 +99,10 @@ class BasePlugin:
 
     def SyncDevices(self, TimedOut):
 
-        self.balance, self.blockheight = GetInfo()
+        try:
+            self.balance, self.blockheight = GetInfo()
+        except:
+            return    
         self.masternodecount = GetMasternodeCount()
         UpdateDevice(self.UNITS['Balance'], 0, self.balance, TimedOut)
         UpdateDevice(self.UNITS['BlockHeight'], 0, self.blockheight, TimedOut)
@@ -160,6 +163,9 @@ def GetMasternodeCount():
                                            Parameters["Port"])
         headers = {'content-type': 'text/plain;'}
         response = requests.post(url, headers=headers, json={"method": "masternode", "params": ["count"]})
+        if str(response.status_code) == "401":
+            Domoticz.Error("Unauthorized! Check RPC username and/or password entry")
+            return
         data = json.loads(response.text)
         if data["result"] == None:
             Domoticz.Error("Cannot get masternode count. Reason: {}, code: {}".format(data["error"]["message"],
@@ -179,6 +185,10 @@ def GetInfo():
                                            Parameters["Port"])
         headers = {'content-type': 'text/plain;'}
         response = requests.post(url, headers=headers, json={"method": "getinfo", "params": []})
+        if str(response.status_code) == "401":
+            Domoticz.Error("Unauthorized! Check RPC username and/or password entry")
+            return
+        Domoticz.Error(str(response.status_code))
         data = json.loads(response.text)
         if data["result"] == None:
             Domoticz.Error("Cannot call wallet. Reason: {}, code: {}".format(data["error"]["message"],
@@ -202,6 +212,9 @@ def StopMasternode():
         headers = {'content-type': 'text/plain;'}
         response = requests.post(url, headers=headers,
                                  json={"method": "masternode", "params": ["stop-many", Parameters["Mode1"]]})
+        if str(response.status_code) == "401":
+            Domoticz.Error("Unauthorized! Check RPC username and/or password entry")
+            return
         data = json.loads(response.text)
         if data["result"] == None:
             Domoticz.Error("Cannot stop masternodes. Reason: {}, code: {}".format(data["error"]["message"],
@@ -222,6 +235,9 @@ def StartMasternode():
         headers = {'content-type': 'text/plain;'}
         response = requests.post(url, headers=headers,
                                  json={"method": "masternode", "params": ["start-many", Parameters["Mode1"]]})
+        if str(response.status_code) == "401":
+            Domoticz.Error("Unauthorized! Check RPC username and/or password entry")
+            return
         data = json.loads(response.text)
         if data["result"] == None:
             Domoticz.Error("Cannot start masternodes. Reason: {}, code: {}".format(data["error"]["message"],
